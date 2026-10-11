@@ -1,0 +1,18 @@
+Channel,Name,Frequency_MHz,Modulation,CTCSS_DCS,Delay,Lockout,Priority,Service,Area
+1,MINSK TOWER,118.300,AM,0,2,No,No,Tower,UMMS
+2,MINSK GROUND,121.700,AM,0,2,No,No,Ground,UMMS
+3,MINSK APPROACH,125.900,AM,0,2,No,No,Approach,UMMS
+4,MINSK RADAR,125.250,AM,0,2,No,No,Radar/ASR,UMMS
+5,MINSK ATIS,128.850,AM,0,2,No,No,ATIS,UMMS
+6,MINSK VOLMET,126.675,AM,0,2,No,No,VOLMET,Minsk FIR
+7,MINSK VOLMET 2,125.475,AM,0,2,No,No,VOLMET,Minsk FIR
+8,MINSK ACC S1,135.075,AM,0,2,No,No,Area control,Minsk FIR
+9,MINSK ACC FIR,133.550,AM,0,2,No,No,Area control,Minsk FIR
+10,MINSK ACC S2,124.825,AM,0,2,No,No,Area control,Minsk FIR
+11,MINSK ACC S3,127.625,AM,0,2,No,No,Area control,Minsk FIR
+12,MINSK ACC S4,126.875,AM,0,2,No,No,Area control,Minsk FIR
+13,MINSK ACC S5,133.875,AM,0,2,No,No,Area control,Minsk FIR
+14,MINSK ACC S6,134.075,AM,0,2,No,No,Area control,Minsk FIR
+15,MINSK ACC S7,135.700,AM,0,2,No,No,Area control,Minsk FIR
+16,MINSK ACC S8,120.575,AM,0,2,No,No,Area control,Minsk FIR
+17,MINSK FIS,133.100,AM,0,2,No,No,Flight information,Minsk FIR
