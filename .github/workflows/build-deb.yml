@@ -14,7 +14,14 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-latest
+          - arch: arm64
+            runner: ubuntu-24.04-arm64
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -58,7 +65,7 @@ jobs:
           Version: ${{ steps.vars.outputs.version }}
           Section: utils
           Priority: optional
-          Architecture: amd64
+          Architecture: ${{ matrix.arch }}
           Maintainer: Mikalai <mikalai-dev@github.com>
           Description: Uniden BC125XLT Scanner Programmer
            A Python TUI for managing channels on the Uniden BC125XLT scanner.
@@ -66,19 +73,19 @@ jobs:
 
       - name: Build .deb package
         run: |
-          dpkg-deb --build package bc125_programmer_${{ steps.vars.outputs.version }}_amd64.deb
+          dpkg-deb --build package bc125_programmer_${{ steps.vars.outputs.version }}_${{ matrix.arch }}.deb
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: bc125_programmer_deb_${{ steps.vars.outputs.version }}
-          path: bc125_programmer_${{ steps.vars.outputs.version }}_amd64.deb
+          name: bc125_programmer_deb_${{ steps.vars.outputs.version }}_${{ matrix.arch }}
+          path: bc125_programmer_${{ steps.vars.outputs.version }}_${{ matrix.arch }}.deb
 
       - name: Create Release
         if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main')
         uses: softprops/action-gh-release@v2
         with:
-          files: bc125_programmer_${{ steps.vars.outputs.version }}_amd64.deb
+          files: bc125_programmer_${{ steps.vars.outputs.version }}_${{ matrix.arch }}.deb
           tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || 'latest' }}
           name: ${{ startsWith(github.ref, 'refs/tags/') && format('Release {0}', steps.vars.outputs.version) || 'Development Build' }}
           draft: false
